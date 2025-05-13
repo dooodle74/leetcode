@@ -6,7 +6,7 @@ using namespace std;
 // vector<int> majorityElement(vector<int>& nums) {
        
 int main() {
-    //vector<int> nums = {1,2,1,2,2,3,3,1};  
+    // vector<int> nums = {1,2,1,2,2,3,3,1};  
     vector<int> nums = {2,1,1,3,1,4,5,6};
 
     // ans1 loop
