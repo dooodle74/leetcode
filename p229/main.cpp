@@ -6,33 +6,33 @@ using namespace std;
 // vector<int> majorityElement(vector<int>& nums) {
        
 int main() {
-    vector<int> nums = {1,2,1,2,2,3,3,1};  
+    //vector<int> nums = {1,2,1,2,2,3,3,1};  
+    vector<int> nums = {2,1,1,3,1,4,5,6};
 
     // ans1 loop
-    int ans1;
+    int ans1 = nums[0];
     // int max_height {0};
     int count {0};
     int iters {0};
     for (int x : nums){
-        // cout << "iters: " << iters++ << endl;
-        // cout << "x: " << x << endl;
-        // cout << "count: " << count << endl;
-        // cout << "max_height: " << max_height << endl;
+        cout << "iters: " << iters++ << endl;
+        cout << "x: " << x << endl;
+        cout << "count: " << count << endl;
         cout << "ans1: " << ans1 << endl;
-        if (count <= 0 - nums.size()/3){
+        if (count <= -static_cast<int>(nums.size()) / 3){
+            cout << "if 1" << endl;
             ans1 = x;
-            count = 1;
-            // max_height = 1;
+            count = -static_cast<int>(nums.size()) / 3 ;
         } else if (x == ans1){
+            cout << "if 2" << endl;
             count++;
-            // if (count > max_height){
-            //     max_height = count;
-            // }
         } else {
+            cout << "if 3" << endl;
             count--;
         }
-        // cout << "new ans1: " << ans1 << endl;
-        // cout << "------------------------" << endl;
+        cout << "new ans1: " << ans1 << endl;
+        cout << "new count: " << count << endl;
+        cout << "------------------------" << endl;
     }
 
     cout << "ans1: " << ans1 << endl;
