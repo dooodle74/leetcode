@@ -10,17 +10,29 @@ int main() {
 
     // ans1 loop
     int ans1;
-    int max_height {0};
+    // int max_height {0};
     int count {0};
+    int iters {0};
     for (int x : nums){
-        if (count == 0 - max_height){
+        // cout << "iters: " << iters++ << endl;
+        // cout << "x: " << x << endl;
+        // cout << "count: " << count << endl;
+        // cout << "max_height: " << max_height << endl;
+        cout << "ans1: " << ans1 << endl;
+        if (count <= 0 - nums.size()/3){
             ans1 = x;
             count = 1;
+            // max_height = 1;
         } else if (x == ans1){
             count++;
+            // if (count > max_height){
+            //     max_height = count;
+            // }
         } else {
             count--;
         }
+        // cout << "new ans1: " << ans1 << endl;
+        // cout << "------------------------" << endl;
     }
 
     cout << "ans1: " << ans1 << endl;
