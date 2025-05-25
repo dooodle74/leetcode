@@ -9,21 +9,18 @@ class Solution(object):
         :type head: Optional[ListNode]
         :rtype: None Do not return anything, modify head in-place instead.
         """
-        node = head
-        n = 0
-        while node:
-            n += 1
-            node = node.next
-        half = -(n//-2)
+        slow = head
+        fast = head
+        while fast and fast.next:
+            fast = fast.next.next
+            if fast:
+                slow = slow.next
+        # now slow is the last element not to be stacked
         stack = []
-
-        node = head
-        i = 0
-        while node:
-            if i >= half:
-                stack.append(node)
-            node = node.next
-            i += 1
+        slow = slow.next
+        while slow:
+            stack.append(slow)
+            slow = slow.next
 
         node = head
         while stack:
