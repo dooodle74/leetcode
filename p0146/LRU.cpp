@@ -87,9 +87,9 @@ class LRUCache {
         void put(int key, int value) {
             // if the key already exists, update it and move to newest
             if (cache.find(key) != cache.end()){
-                CacheBlock* currCache = cache[key];
-                currCache->value = value; // update value
-                moveToNewest(currCache);
+                CacheBlock* currBlock = cache[key];
+                currBlock->value = value; // update value
+                moveToNewest(currBlock);
                 return;
             }
     
