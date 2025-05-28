@@ -11,14 +11,8 @@ class Solution(object):
         :rtype: Optional[ListNode]
         """
         def merge2Lists(head1, head2):
-            node = head1
-            if (head1.val > head2.val):
-                node = head2
-                head2 = head2.next
-            else:
-                head1 = head1.next
-            
-            ret_head = node
+            node = ListNode()            
+            dummyHead = node
             
             while head1 and head2:
                 if head1.val <= head2.val:
@@ -29,41 +23,32 @@ class Solution(object):
                     head2 = head2.next
                 node = node.next
             
-            while head1:
+            if head1:
                 node.next = head1
-                node = node.next
-                head1 = head1.next
             
-            while head2:
+            if head2:
                 node.next = head2
-                node = node.next
-                head2 = head2.next
             
-            return ret_head
+            return dummyHead.next
 
-        # start
+        # get rid of check if valid - newer merge2 checks for it
         k = len(lists)
         if k < 1:
             return None
         if k <= 1:
             return lists[0]
         
-        currList_idx = 0
-
-        # search for the first valid list
-        while currList_idx < k and not lists[currList_idx]:
-            currList_idx += 1
-
-        if currList_idx == k:
-            return None # No valid lists
+        # divide and conq (merge sort type shi)
+        # modify in place list of linkedlists
+        while len(lists) > 1:
+            new_lists = [] # temp array to avoid popping in place for each pair
+            for i in range(0, len(lists), 2):
+                list1_head = lists[i]
+                list2_head = None
+                if i + 1 < len(lists):
+                    list2_head = lists[i+1]
+                new_lists.append(merge2Lists(list1_head, list2_head))
+            lists = new_lists
         
-        currList_head = lists[currList_idx]
-        
-        # merge all valid lists starting from next one
-        for nextList_idx in range(currList_idx + 1, k):
-            if not lists[nextList_idx]:
-                continue
-            nextList_head = lists[nextList_idx]
-            currList_head = merge2Lists(currList_head, nextList_head)
-        
-        return currList_head
+        # lists now has one big list
+        return lists[0]
